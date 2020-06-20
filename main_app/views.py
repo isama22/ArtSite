@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Fiber, Figurative, Digital, Photo
+from .models import Fiber, Figurative, Digital, FiberPhoto
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from .models import Figurative
 # from .models import Digital
@@ -115,7 +115,7 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)  
 
-def add_photo(request, fiber_id):
+def fiber_photo(request, fiber_id):
     # photo-file will be the "name" attribute on the <input type="file">
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
@@ -128,8 +128,15 @@ def add_photo(request, fiber_id):
             # build the full url string
             url = f"{S3_BASE_URL}{BUCKET}/{key}"
             # we can assign to cat_id or cat (if you have a cat object)
-            photo = Photo(url=url, fiber_id=fiber_id)
+            photo =FiberPhoto(url=url, fiber_id=fiber_id)
             photo.save()
         except:
             print('An error occurred uploading file to S3')
     return redirect('fibers_detail', fiber_id=fiber_id)  
+
+
+def delete_fiber_photo(request, fiber_id):
+    key = FiberPhoto.objects.get(fiber_id=fiber_id)
+    key.delete()
+    
+    return redirect('fibers_detail', fiber_id=fiber_id)    

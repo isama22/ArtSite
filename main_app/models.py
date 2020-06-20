@@ -36,7 +36,7 @@ class Digital(models.Model):
     def get_absolute_url(self):
      return reverse('detail', kwargs={'digital_id': self.id})
 
-class Photo(models.Model):
+class FiberPhoto(models.Model):
     url = models.CharField(max_length=200)
     fiber = models.ForeignKey(Fiber, on_delete=models.CASCADE)
     # figurative = models.ForeignKey(Figurative, on_delete=models.CASCADE)

@@ -17,18 +17,22 @@
   <a href="{% url 'fibers_delete' fiber.id %}">Delete</a>
   <a href="{% url 'fibers_index' %}">Cancel</a>
 </div>
-{% for photo in cat.photo_set.all %}
+{% for photo in fiber.fiberphoto_set.all %}
     <img class="responsive-img card-panel" src="{{photo.url}}">
 {% empty %}
     <div class="card-panel teal-text center-align">No Photos Uploaded</div>
 {% endfor %}
 
 <!-- new code below -->
-<form action="{% url 'add_photo' fiber.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+<form action="{% url 'fiber_photo' fiber.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
     {% csrf_token %}
     <input type="file" name="photo-file">
     <br><br>
     <input type="submit" class="btn" value="Upload Photo">
 </form>
 
+<form action="{% url 'delete_fiber_photo' fiber.id %}" method="POST">
+  {% csrf_token %}
+  <input type="submit" class="btn" value="Delete Photo">
+</form>
 {% endblock %}
