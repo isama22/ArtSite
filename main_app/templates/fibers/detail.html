@@ -4,10 +4,13 @@
 <h1>fiber Details</h1>
 
 <div class="card">
-  <div class="card-content">
+  <div class="description-card">
     <span class="card-title">{{ fiber.title }}</span>
     <p>Description: {{ fiber.description }}</p>
   </div>
+  <a href="{% url 'fibers_update' fiber.id %}">Edit</a>
+  <a href="{% url 'fibers_delete' fiber.id %}">Delete</a>
+  <a href="{% url 'fibers_index' %}">Cancel</a>
 </div>
 
 {% endblock %}

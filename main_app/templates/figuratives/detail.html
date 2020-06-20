@@ -4,9 +4,12 @@
 <h1>figurative Details</h1>
 
 <div class="card">
-  <div class="card-content">
+  <div class="description-card">
     <span class="card-title">{{ figurative.title }}</span>
     <p>Description: {{ figurative.description }}</p>
+    <a href="{% url 'figuratives_update' figurative.id %}">Edit</a>
+    <a href="{% url 'figuratives_delete' figurative.id %}">Delete</a>
+    <a href="{% url 'figuratives_index' %}">Cancel</a>
   </div>
 </div>
 

@@ -4,10 +4,13 @@
 <h1>digital Details</h1>
 
 <div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ digital.title }}</span>
+  <div class="description-card">
+    <span>{{ digital.title }}</span>
     <p>Description: {{ digital.description }}</p>
   </div>
+  <a href="{% url 'digitals_update' digital.id %}">Edit</a>
+  <a href="{% url 'digitals_delete' digital.id %}">Delete</a>
+  <a href="{% url 'digitals_index' %}">Cancel</a>
 </div>
 
 {% endblock %}
