@@ -23,4 +23,6 @@ urlpatterns = [
     path('digitals/create/', views.DigitalsCreate.as_view(), name='digitals_create'),
     path('digitals/<int:pk>/update/', views.DigitalUpdate.as_view(), name='digitals_update'),
     path('digitals/<int:pk>/delete/', views.DigitalDelete.as_view(), name='digitals_delete'),
+
+    path('accounts/signup/', views.signup, name='signup'),
 ]

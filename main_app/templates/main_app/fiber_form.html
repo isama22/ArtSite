@@ -3,9 +3,9 @@
 {% block content %}
   <!-- Leaving the action empty makes the form post to the same url used to display it -->
   {% if object %}
-  <h1>Edit&nbsp;&nbsp;<span class="teal-text">{{object.title}}</span></h1>
+  <h4><em>Edit&nbsp;&nbsp;<span class="teal-text">{{object.title}}</span></em></h4>
 {% else %}
-  <h1>Add a Fibers Piece</h1>
+  <h4><em>Add a Fibers Piece</em></h4>
 {% endif %}
   <form action="" method="post">
     <!-- Django requires the following for security purposes -->

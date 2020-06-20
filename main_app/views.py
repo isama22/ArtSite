@@ -3,6 +3,8 @@ from .models import Fiber
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Figurative
 from .models import Digital
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Add the following import
 from django.http import HttpResponse
 
@@ -26,18 +28,21 @@ def fibers_detail(request, fiber_id):
   fiber = Fiber.objects.get(id=fiber_id)
   return render(request, 'fibers/detail.html', { 'fiber': fiber })  
 
-class FibersCreate(CreateView):
+class FibersCreate(LoginRequiredMixin, CreateView):
   model = Fiber
   fields = '__all__'
   success_url = '/fibers/'
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
-class FiberUpdate(UpdateView):
+class FiberUpdate(LoginRequiredMixin, UpdateView):
   model = Fiber
   # Let's disallow the renaming of a cat by excluding the name field!
   fields = '__all__'
   success_url = '/fibers/'
 
-class FiberDelete(DeleteView):
+class FiberDelete(LoginRequiredMixin, DeleteView):
   model = Fiber
   success_url = '/fibers/'
 
@@ -49,18 +54,18 @@ def figuratives_detail(request, figurative_id):
   figurative = Figurative.objects.get(id=figurative_id)
   return render(request, 'figuratives/detail.html', { 'figurative': figurative }) 
 
-class FigurativesCreate(CreateView):
+class FigurativesCreate(LoginRequiredMixin, CreateView):
   model = Figurative
   fields = '__all__'
   success_url = '/figuratives/'
 
-class FigurativeUpdate(UpdateView):
+class FigurativeUpdate(LoginRequiredMixin, UpdateView):
   model = Figurative
   # Let's disallow the renaming of a cat by excluding the name field!
   fields = '__all__'
   success_url = '/figuratives/'
 
-class FigurativeDelete(DeleteView):
+class FigurativeDelete(LoginRequiredMixin, DeleteView):
   model = Figurative
   success_url = '/figuratives/'
 
@@ -72,17 +77,36 @@ def digitals_detail(request, digital_id):
   digital = Digital.objects.get(id=digital_id)
   return render(request, 'digitals/detail.html', { 'digital': digital }) 
 
-class DigitalsCreate(CreateView):
+class DigitalsCreate(LoginRequiredMixin, CreateView):
   model = Digital
   fields = '__all__'
   success_url = '/digitals/'    
 
-class DigitalUpdate(UpdateView):
+class DigitalUpdate(LoginRequiredMixin, UpdateView):
   model = Digital
   # Let's disallow the renaming of a cat by excluding the name field!
   fields = '__all__'
   success_url = '/digitals/'
 
-class DigitalDelete(DeleteView):
+class DigitalDelete(LoginRequiredMixin, DeleteView):
   model = Digital
   success_url = '/digitals/'  
+
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    # This is how to create a 'user' form object
+    # that includes the data from the browser
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      # This will add the user to the database
+      user = form.save()
+      # This is how we log a user in via code
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  # A bad POST or a GET request, so render signup.html with an empty form
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)  
