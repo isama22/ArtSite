@@ -1,13 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="card">
-  <div class="description-card">
-    <span>{{ digital.title }}</span>
-    <p>Description: {{ digital.description }}</p>
-  </div>
-  <a href="{% url 'digitals_update' digital.id %}">Edit</a>
-  <a href="{% url 'digitals_delete' digital.id %}">Delete</a>
-  <a href="{% url 'digitals_index' %}">Cancel</a>
+<div class="detail-page">
+<div class="description-card">
+   <div class="description">
+    <ul>
+      <li>{{ digital.title }}</li>
+      <br><br>
+      <li>{{ digital.description }}</li>
+    </ul>
+  </div> 
+   </div> 
+
+  {% for photo in digital.digitalphoto_set.all %}
+  <img class="fiber-img" src="{{photo.url}}">
+
+</div>
+{% if user.is_authenticated %}
+<div>
+  <form action="{% url 'delete_digital_photo' digital.id %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete Photo">
+  </form>
+</div>
+{% endif %}
+{% empty %}
+<form action="{% url 'digital_photo' digital.id %}" enctype="multipart/form-data" method="POST">
+  {% csrf_token %}
+  <input type="file" name="photo-file">
+  <br><br>
+  <input type="submit" value="Upload Photo">
+</form>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<div class="edit-options">
+  <a class="edit-link" href="{% url 'digitals_update' digital.id %}">Edit</a>
+  <a class="edit-link" href="{% url 'digitals_delete' digital.id %}">Delete</a>
 </div>
 
+{% endif %}
+  <a class="edit-link" href="{% url 'digitals_index' %}">Back</a>
 {% endblock %}

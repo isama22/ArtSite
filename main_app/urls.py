@@ -31,4 +31,8 @@ urlpatterns = [
 
     path('figuratives/<int:figurative_id>/figurative_photo/', views.figurative_photo, name='figurative_photo'),
     path('figuratives/<int:figurative_id>/delete_figurative_photo/', views.delete_figurative_photo, name='delete_figurative_photo'),
+
+    path('digitals/<int:digital_id>/digital_photo/', views.digital_photo, name='digital_photo'),
+    path('digitals/<int:digital_id>/delete_digital_photo/', views.delete_digital_photo, name='delete_digital_photo'),
+
 ]

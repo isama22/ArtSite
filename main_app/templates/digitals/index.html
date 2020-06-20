@@ -6,13 +6,16 @@
 <h5><a class="loggedin-option" href="{% url 'digitals_create' %}"><em>+ Add a Digital Piece</em> &nbsp;</a></h5>
 {% endif %}
 {% for digital in digitals %}
-  <div class="card">
-    <a href="/digitals/{{ digital.id }}">
+<div class="card">
+  <a href="/digitals/{{ digital.id }}">
     <div class="index-link">
-      <span>{{ digital.title }}</span>
+      <span class="index-title">{{ digital.title }}</span>
+      {% for photo in digital.digitalphoto_set.all %}
+      <img class="fiber-img-index" src="{{photo.url}}">
+      {% endfor %}
     </div>
   </a>
-  </div>
+</div>
 {% endfor %}
 
 {% endblock %}

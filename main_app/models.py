@@ -49,3 +49,10 @@ class FigurativePhoto(models.Model):
 
     def __str__(self):
         return f"Photo for figurative_id: {self.figurative_id} @{self.url}" 
+
+class DigitalPhoto(models.Model):
+    url = models.CharField(max_length=200)
+    digital = models.ForeignKey(Digital, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for digital_id: {self.digital_id} @{self.url}"         

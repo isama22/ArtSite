@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Fiber, Figurative, Digital, FiberPhoto, FigurativePhoto
+from .models import Fiber, Figurative, Digital, FiberPhoto, FigurativePhoto, DigitalPhoto
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from .models import Figurative
 # from .models import Digital
@@ -167,3 +167,29 @@ def delete_figurative_photo(request, figurative_id):
     key.delete()
     
     return redirect('figuratives_detail', figurative_id=figurative_id)
+
+def digital_photo(request, digital_id):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            photo =DigitalPhoto(url=url, digital_id=digital_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('digitals_detail', digital_id=digital_id)  
+
+
+def delete_digital_photo(request, digital_id):
+    key = DigitalPhoto.objects.get(digital_id=digital_id)
+    key.delete()
+    
+    return redirect('digitals_detail', digital_id=digital_id)    
