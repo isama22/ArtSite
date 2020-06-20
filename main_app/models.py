@@ -39,10 +39,13 @@ class Digital(models.Model):
 class FiberPhoto(models.Model):
     url = models.CharField(max_length=200)
     fiber = models.ForeignKey(Fiber, on_delete=models.CASCADE)
-    # figurative = models.ForeignKey(Figurative, on_delete=models.CASCADE)
-    # digital = models.ForeignKey(Digital, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Photo for fiber_id: {self.fiber_id} @{self.url}" 
-        # return f"Photo for figurative_id: {self.figurative_id} @{self.url}"    
-        # return f"Photo for digital_id: {self.digital_id} @{self.url}"
+
+class FigurativePhoto(models.Model):
+    url = models.CharField(max_length=200)
+    figurative = models.ForeignKey(Figurative, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for figurative_id: {self.figurative_id} @{self.url}" 

@@ -1,42 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="detail-page">
 <div class="description-card">
-  {% for photo in fiber.fiberphoto_set.all %}
-      <img class="fiber-img" src="{{photo.url}}">
-  {% endfor %}
-  <div class="description">
+   <div class="description">
     <ul>
       <li>{{ fiber.title }}</li>
       <br><br>
-        <li>{{ fiber.description }}</li>
+      <li>{{ fiber.description }}</li>
     </ul>
-  </div>
+  </div> 
+   </div> 
 
+  {% for photo in fiber.fiberphoto_set.all %}
+  <img class="fiber-img" src="{{photo.url}}">
 
 </div>
-  {% if user.is_authenticated %}
-  <div class="edit-options">
-    <a class="edit-link" href="{% url 'fibers_update' fiber.id %}">Edit</a>
-    <a class="edit-link" href="{% url 'fibers_delete' fiber.id %}">Delete</a>
-    <a class="edit-link" href="{% url 'fibers_index' %}">Cancel</a>
-  </div>
-
-
-
-<!-- new code below -->
-<div class="fiber-buttons">
-<form action="{% url 'fiber_photo' fiber.id %}" enctype="multipart/form-data" method="POST">
+{% if user.is_authenticated %}
+<div>
+  <form action="{% url 'delete_fiber_photo' fiber.id %}" method="POST">
     {% csrf_token %}
-    <input type="file" name="photo-file">
-    <br><br>
-    <input type="submit" value="Upload Photo">
-</form>
-<br>
-<form action="{% url 'delete_fiber_photo' fiber.id %}" method="POST">
-  {% csrf_token %}
-  <input type="submit" value="Delete Photo">
-</form>
+    <input type="submit" value="Delete Photo">
+  </form>
 </div>
-  {% endif %}
+{% endif %}
+{% empty %}
+<form action="{% url 'fiber_photo' fiber.id %}" enctype="multipart/form-data" method="POST">
+  {% csrf_token %}
+  <input type="file" name="photo-file">
+  <br><br>
+  <input type="submit" value="Upload Photo">
+</form>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<div class="edit-options">
+  <a class="edit-link" href="{% url 'fibers_update' fiber.id %}">Edit</a>
+  <a class="edit-link" href="{% url 'fibers_delete' fiber.id %}">Delete</a>
+</div>
+
+{% endif %}
+  <a class="edit-link" href="{% url 'fibers_index' %}">Back</a>
 {% endblock %}

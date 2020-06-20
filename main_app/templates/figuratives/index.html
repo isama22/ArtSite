@@ -10,9 +10,11 @@
     <a href="/figuratives/{{ figurative.id }}">
     <div class="index-link">
       <span>{{ figurative.title }}</span>
+      {% for photo in figurative.figurativephoto_set.all %}
+      <img class="fiber-img-index" src="{{photo.url}}">
+      {% endfor %}
     </div>
   </a>
   </div>
-{% endfor %}
-
+  {% endfor %}
 {% endblock %}

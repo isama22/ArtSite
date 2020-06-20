@@ -36,6 +36,11 @@ h1 {
     color: bisque;
 }
 
+.enter {
+    display: flex;
+    justify-content: center;
+    color: aqua;
+}
 h4 {
     /* display: flex;
     flex-direction: row; */
@@ -232,8 +237,22 @@ a:hover {
     color: bisque;
     border: solid 1px bisque;
     padding: 10px;
-    width: 100px;
+    width: 240px;
     margin: 20px;
+}
+
+.index-title {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.fiber-img-index {
+    height: 200px;
+    width: 170px;
+    margin: 20px;
+    padding: 10px;
+    border: solid 1px;
+    border-color: bisque;
 }
 
 .description-card {
@@ -272,8 +291,8 @@ a:hover {
 }
 
 .fiber-img {
-    height: 400px;
-    width: 400px;
+    height: 667px;
+    width: 500px;
     margin: 20px;
     padding: 10px;
     border: solid 1px;
@@ -300,4 +319,10 @@ a:hover {
 .loggedin-option {
     color: bisque;
     margin: 25px;
+}
+
+.detail-page  {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 300px;
 }

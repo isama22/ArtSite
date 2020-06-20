@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Fiber, Figurative, Digital, FiberPhoto
+from .models import Fiber, Figurative, Digital, FiberPhoto, FigurativePhoto
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from .models import Figurative
 # from .models import Digital
@@ -36,9 +36,9 @@ class FibersCreate(LoginRequiredMixin, CreateView):
   model = Fiber
   fields = '__all__'
   success_url = '/fibers/'
-  def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
+  # def form_valid(self, form):
+  #   form.instance.user = self.request.user
+  #   return super().form_valid(form)
 
 class FiberUpdate(LoginRequiredMixin, UpdateView):
   model = Fiber
@@ -140,3 +140,30 @@ def delete_fiber_photo(request, fiber_id):
     key.delete()
     
     return redirect('fibers_detail', fiber_id=fiber_id)    
+
+
+def figurative_photo(request, figurative_id):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            photo =FigurativePhoto(url=url, figurative_id=figurative_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('figuratives_detail', figurative_id=figurative_id)  
+
+
+def delete_figurative_photo(request, figurative_id):
+    key = FigurativePhoto.objects.get(figurative_id=figurative_id)
+    key.delete()
+    
+    return redirect('figuratives_detail', figurative_id=figurative_id)
