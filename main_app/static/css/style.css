@@ -37,7 +37,8 @@ h1 {
 }
 
 h4 {
-    display: flex;
+    /* display: flex;
+    flex-direction: row; */
     /* justify-content: center; */
     color: #E3BDBB;
     /* border: solid 1px; */
@@ -200,14 +201,14 @@ a:hover {
     flex-direction: column;
 }
 
-.fibers-img {
+/* .fibers-img {
     height: 400px;
     width: 400px;
     margin: 20px;
     padding: 10px;
     border: solid 1px;
     border-color: bisque;
-}
+} */
 
 .figurative-img {
     height: 470px;
@@ -236,16 +237,18 @@ a:hover {
 }
 
 .description-card {
-    color: bisque;
+    /* color: bisque;
     border: solid 1px bisque;
     padding: 20px;
-    width: 500px;
-    margin: 20px;
+    width: 750px;
+    margin: 20px; */
+    display: flex;
+    flex-direction: row;
 }
 
 .login  {
     color: white;
-    cursor: auto;
+    cursor: default;
     margin: 25px;
 }
 
@@ -256,4 +259,45 @@ a:hover {
 .loggedin-nav-link {
     margin-top: 30px;
     color: #E3BDBB;
+}
+
+.fiber-buttons {
+    cursor: auto;
+    margin: 30px;
+}
+
+.edit-options {
+    margin: 30px;
+    width: 170px;
+}
+
+.fiber-img {
+    height: 400px;
+    width: 400px;
+    margin: 20px;
+    padding: 10px;
+    border: solid 1px;
+    border-color: bisque;
+}
+
+.edit-link {
+    color: bisque;
+        font-size: 12px;
+}
+
+.edit-link:hover {
+    color: white;
+    font-weight: bold;
+}
+
+.description {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 500px;
+}
+
+.loggedin-option {
+    color: bisque;
+    margin: 25px;
 }

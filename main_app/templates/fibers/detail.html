@@ -1,38 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>fiber Details</h1>
-
-<div class="card">
-  <div class="description-card">
-    <span class="card-title">{{ fiber.title }}</span>
-    <p>Description: {{ fiber.description }}</p>
-    {% for photo in fiber.photo_set.all %}
-    <img class="responsive-img card-panel" src="{{photo.url}}">
-    {% empty %}
-    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endfor %}
+<div class="description-card">
+  {% for photo in fiber.fiberphoto_set.all %}
+      <img class="fiber-img" src="{{photo.url}}">
+  {% endfor %}
+  <div class="description">
+    <ul>
+      <li>{{ fiber.title }}</li>
+      <br><br>
+        <li>{{ fiber.description }}</li>
+    </ul>
   </div>
-  <a href="{% url 'fibers_update' fiber.id %}">Edit</a>
-  <a href="{% url 'fibers_delete' fiber.id %}">Delete</a>
-  <a href="{% url 'fibers_index' %}">Cancel</a>
+
+
 </div>
-{% for photo in fiber.fiberphoto_set.all %}
-    <img class="responsive-img card-panel" src="{{photo.url}}">
-{% empty %}
-    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-{% endfor %}
+  {% if user.is_authenticated %}
+  <div class="edit-options">
+    <a class="edit-link" href="{% url 'fibers_update' fiber.id %}">Edit</a>
+    <a class="edit-link" href="{% url 'fibers_delete' fiber.id %}">Delete</a>
+    <a class="edit-link" href="{% url 'fibers_index' %}">Cancel</a>
+  </div>
+
+
 
 <!-- new code below -->
-<form action="{% url 'fiber_photo' fiber.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+<div class="fiber-buttons">
+<form action="{% url 'fiber_photo' fiber.id %}" enctype="multipart/form-data" method="POST">
     {% csrf_token %}
     <input type="file" name="photo-file">
     <br><br>
-    <input type="submit" class="btn" value="Upload Photo">
+    <input type="submit" value="Upload Photo">
 </form>
-
+<br>
 <form action="{% url 'delete_fiber_photo' fiber.id %}" method="POST">
   {% csrf_token %}
-  <input type="submit" class="btn" value="Delete Photo">
+  <input type="submit" value="Delete Photo">
 </form>
+</div>
+  {% endif %}
 {% endblock %}

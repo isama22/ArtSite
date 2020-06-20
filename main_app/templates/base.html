@@ -31,11 +31,6 @@
                 <li><a class="nav-link" href="{% url 'digitals_index' %}"><em>Digital</em> &nbsp;</a></li>
                 <li><a class="nav-link" href="{% url 'contact' %}"><em>Contact</em> &nbsp;</a></li>
                 {% if user.is_authenticated %}
-                <br><br>
-                <li><a class="loggedin-nav-link" href="{% url 'fibers_create' %}"><em>+ Add a Fiber Piece</em> &nbsp;</a></li>
-                <li><a class="loggedin-nav-link" href="{% url 'figuratives_create' %}"><em>+ Add a Figurative Piece</em> &nbsp;</a></li>
-                <li><a class="loggedin-nav-link" href="{% url 'digitals_create' %}"><em>+ Add a Digital Piece</em> &nbsp;</a></li>
-                <br><br>
                 <li><a class="loggedin-nav-link" href="{% url 'logout' %}">Log Out</a></li>
                 {% endif %}
             </ul>
