@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>digital List</h1>
+
+{% for digital in digitals %}
+  <div class="card">
+    <a href="/digitals/{{ digital.id }}">
+    <div class="card-content">
+      <span>{{ digital.title }}</span>
+    </div>
+  </a>
+  </div>
+{% endfor %}
+
+{% endblock %}

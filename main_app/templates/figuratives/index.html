@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>fiber List</h1>
+
+{% for figurative in figuratives %}
+  <div class="card">
+    <a href="/figuratives/{{ figurative.id }}">
+    <div class="card-content">
+      <span>{{ figurative.title }}</span>
+    </div>
+  </a>
+  </div>
+{% endfor %}
+
+{% endblock %}

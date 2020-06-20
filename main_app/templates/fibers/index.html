@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>fiber List</h1>
+
+{% for fiber in fibers %}
+  <div class="card">
+    <a href="/fibers/{{ fiber.id }}">
+    <div class="card-content">
+      <span>{{ fiber.title }}</span>
+    </div>
+  </a>
+  </div>
+{% endfor %}
+
+{% endblock %}
