@@ -25,4 +25,6 @@ urlpatterns = [
     path('digitals/<int:pk>/delete/', views.DigitalDelete.as_view(), name='digitals_delete'),
 
     path('accounts/signup/', views.signup, name='signup'),
+
+    path('fibers/<int:fiber_id>/add_photo/', views.add_photo, name='add_photo'),
 ]
