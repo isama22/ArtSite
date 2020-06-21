@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="detail-page">
+<div class="digital-detail-page">
 <div class="description-card">
    <div class="description">
     <ul>
       <li>{{ digital.title }}</li>
       <br><br>
       <li>{{ digital.description }}</li>
+      <br><br>
+      <li>  <a class="edit-link" href="{% url 'digitals_index' %}">Back</a></li>
     </ul>
   </div> 
    </div> 
 
   {% for photo in digital.digitalphoto_set.all %}
-  <img class="fiber-img" src="{{photo.url}}">
+  <img class="digital-img" src="{{photo.url}}">
 
 </div>
 {% if user.is_authenticated %}
 <div>
-  <form action="{% url 'delete_digital_photo' digital.id %}" method="POST">
+  <form class="delete-form" action="{% url 'delete_digital_photo' digital.id %}" method="POST">
     {% csrf_token %}
     <input type="submit" value="Delete Photo">
   </form>
@@ -39,5 +41,4 @@
 </div>
 
 {% endif %}
-  <a class="edit-link" href="{% url 'digitals_index' %}">Back</a>
 {% endblock %}

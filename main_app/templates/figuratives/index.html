@@ -5,16 +5,18 @@
 {% if user.is_authenticated %}
 <h5><a class="loggedin-option" href="{% url 'figuratives_create' %}"><em>+ Add a Figurative Piece</em> &nbsp;</a></h5>
 {% endif %}
+
 {% for figurative in figuratives %}
   <div class="card">
     <a href="/figuratives/{{ figurative.id }}">
-    <div class="index-link">
+    <div class="fibers-index-link">
       <span>{{ figurative.title }}</span>
       {% for photo in figurative.figurativephoto_set.all %}
-      <img class="fiber-img-index" src="{{photo.url}}">
+      <img class="fibers-img-index" src="{{photo.url}}">
       {% endfor %}
     </div>
   </a>
   </div>
   {% endfor %}
+  
 {% endblock %}
