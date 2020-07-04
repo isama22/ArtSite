@@ -6,8 +6,8 @@ A Django application made to house a portion of the body of art work I've made o
 <em>Screenshots:</em>
 ![](https://i.postimg.cc/N0tv59M3/Screen-Shot-2020-06-22-at-12-19-40-AM.png)
 <br></br>
-<em>Hidden Login/Signup Links</em>
-![](https://i.postimg.cc/ry1nwnWw/Screen-Shot-2020-06-22-at-12-19-55-AM.png)
+<em>Hidden Login Button</em>
+![](https://i.postimg.cc/RV1VP57j/Screen-Shot-2020-07-04-at-4-28-30-AM.png)
 <br></br>
 ![](https://i.postimg.cc/c45QxwDJ/Screen-Shot-2020-06-22-at-12-20-11-AM.png)
 <br></br>
