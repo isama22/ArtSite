@@ -1,4 +1,4 @@
-# An Interactive Personal Art Site
+# A Malleable Personal Art Site
 A Django application made to house a portion of the body of art work I've made over the past year. With the discreet login button placed on the home page, I can easily update content via crud on a browser.
 <br></br>
 <strong>Technologies:</strong> Django | Python | postgreSQL | AWS S3 Image Hosting
