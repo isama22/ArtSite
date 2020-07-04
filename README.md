@@ -1,4 +1,4 @@
-# ArtSite
+# An Interactive Personal Art Site
 A site furnished with pieces of art I've made with a disguised login button that allows for 
 updates to the site to be made via crud on the web.
 <br></br>
