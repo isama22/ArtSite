@@ -15,3 +15,5 @@ A Django application made to house a portion of the body of work I've made over 
 <br></br>
 <em>Once logged in, the site manager can see edit and delete options on each post</em>
 ![](https://i.postimg.cc/3JWvcWKQ/Screen-Shot-2020-06-22-at-12-21-25-AM.png)
+<br>
+![](https://media1.giphy.com/media/dvsMhkRF9OXSj8CnZ3/giphy.gif)
