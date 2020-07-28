@@ -7,6 +7,6 @@ When browsing as a visitor:
 <br>
 ![](https://media0.giphy.com/media/h7GKNMUeiHXmAdKUa6/giphy.gif)
 <br><br>
-When logged in:
+Adding a new post when logged in:
 <br>
-![](https://media0.giphy.com/media/h7GKNMUeiHXmAdKUa6/giphy.gif)
+![](https://media2.giphy.com/media/ZdNGO3TutjVK0EYIWS/giphy.gif)
