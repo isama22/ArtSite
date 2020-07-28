@@ -4,7 +4,9 @@ A Django application made to house a portion of the body of work I've made over 
 <strong>Technologies:</strong> Django | Python | postgreSQL | AWS S3 Image Hosting
 <br></br>
 When browsing as a visitor:
+<br>
 ![](https://media0.giphy.com/media/h7GKNMUeiHXmAdKUa6/giphy.gif)
 <br><br>
 When logged in:
+<br>
 ![](https://media0.giphy.com/media/h7GKNMUeiHXmAdKUa6/giphy.gif)
