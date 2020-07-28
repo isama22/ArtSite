@@ -3,7 +3,8 @@ A Django application made to house a portion of the body of work I've made over 
 <br></br>
 <strong>Technologies:</strong> Django | Python | postgreSQL | AWS S3 Image Hosting
 <br></br>
-<a href="www.isa-sofia.com" target="_blank">Visit</a> 
+<a href="http://www.isa-sofia.com/" target="_blank">Visit</a> 
+<br><br>
 When browsing as a visitor:
 <br><br>
 ![](https://media0.giphy.com/media/h7GKNMUeiHXmAdKUa6/giphy.gif)
